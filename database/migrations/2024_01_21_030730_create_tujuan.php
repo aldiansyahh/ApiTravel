@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('provinsi');
             $table->string('kota');
             $table->string('lokasi_tujuan');
+            $table->string('urlImage');
             $table->timestamps();
         });
     }

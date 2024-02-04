@@ -60,6 +60,7 @@ Route::get('/tujuan', [ApiTujuanController::class,'tujuan'])->name('tujuan');
 Route::get('/tujuan/{id_tujuan}', [ApiTujuanController::class,'show']);
 Route::post('/create-tujuan', [ApiTujuanController::class, 'create']);
 Route::put('/update-tujuan/{id_tujuan}', [ApiTujuanController::class, 'update']);
+Route::post('/addImage', [ApiTujuanController::class, 'store']);
 //Put harus di x-www-form
 Route::delete('/delete-tujuan/{id_tujuan}', [ApiTujuanController::class, 'delete']);
 

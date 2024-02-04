@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Penyewa;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Admin;
+use Illuminate\Support\Facades\Login;
 use Illuminate\Support\Facades\Session;
 
 
 
-class PenyewaController extends Controller
+class AdminController extends Controller
 {
-    public function Penyewa()
+    public function Admin()
     {
-        $penyewa = User::all();
-        return view('penyewa.masterpenyewa', compact('penyewa'));
+        $admin = User::all();
+        return view('admin.masteradmin', compact('admin'));
 
     }
 
-    public function actionPenyewa(Request $request)
+    public function actionAdmin(Request $request)
     {
         $data = [
             'email' => $request->input('Email'),
@@ -30,7 +30,7 @@ class PenyewaController extends Controller
 
 
         if (Auth::Attempt($data)) {
-            return redirect('masterpenyewa');
+            return redirect('masteradmin');
         }else{
             Session::flash('error', 'Email atau Password Salah');
             return redirect('/login');
