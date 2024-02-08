@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kendaraan', function (Blueprint $table) {
-            $table->id('id_kendaraan');
+            $table->id('id_kendaraan')->autoIncrement();
             $table->unsignedBigInteger('id_penyewa');
             $table->foreign('id_penyewa')->references('id_penyewa')->on('penyewa')->onDelete('cascade');
             $table->string('nama');

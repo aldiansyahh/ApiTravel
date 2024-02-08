@@ -28,7 +28,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 //Api Penyewa
-Route::get('/penyewa', [PenyewaController::class,'penyewa'])->name('penyewa');
 Route::get('/penyewa', [ApiPenyewaController::class,'penyewa'])->name('penyewa');
 Route::get('/penyewa/{id_penyewa}', [ApiPenyewaController::class,'show']);
 Route::post('/create-penyewa', [ApiPenyewaController::class, 'create']);
@@ -64,7 +63,7 @@ Route::post('/addImage', [ApiTujuanController::class, 'store']);
 //Put harus di x-www-form
 Route::delete('/delete-tujuan/{id_tujuan}', [ApiTujuanController::class, 'delete']);
 
-//Api Sewa
+//Api Sewa (Invoice)
 Route::get('/sewa', [SewaController::class,'sewa'])->name('sewa');
 Route::get('/sewa', [ApiSewaController::class,'sewa'])->name('sewa');
 Route::get('/sewa/{id_sewa}', [ApiSewaController::class,'show']);
