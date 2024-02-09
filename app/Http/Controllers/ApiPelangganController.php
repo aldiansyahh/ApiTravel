@@ -18,20 +18,21 @@ class ApiPelangganController extends Controller
         return response()->json($data,200);
     }
 
-    public function show($id_pelanggan){
-        $pelanggan= Pelanggan::find($id_pelanggan);
-
+    public function show($id_user){
+        $pelanggan = Pelanggan::where('id_user', $id_user)->first();
+    
         if(!$pelanggan){
-            return response()->json('Data Tidak Ditemukan');
+            return response()->json(['message' => 'Data Tidak Ditemukan'], 404);
         };
-
-        $data=[
-            'message'=>'Data Berhasil Diambil',
-            'data'=> $pelanggan
-
+    
+        $data = [
+            'message' => 'Data Berhasil Diambil',
+            'data' => $pelanggan
         ];
-        return response()->json($data,200);
+    
+        return response()->json($data, 200);
     }
+    
 
 //Menambahkan Data Di API
     public function create(Request $request)
