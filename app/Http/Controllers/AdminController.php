@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Kendaraan;
+use App\Models\Otlate;
 use App\Models\Pelanggan;
 use App\Models\Penyewa;
 use App\Models\Sewa;
@@ -94,6 +95,14 @@ class AdminController extends Controller
 
         $tujuan = Tujuan::all();
             return view('admin.tujuan', compact('tujuan'));
+
+    }
+
+    public function otlate()
+    {
+
+        $otlate = Otlate::all();
+            return view('admin.otlate', compact('otlate'));
 
     }
 //CRUD PENYEWA
@@ -199,59 +208,82 @@ public function updatepelanggan(request $request, $id_pelanggan ){
     }
 
     //CRUD TUJUAN
-    public function tambahtujuan(){
+    public function tambahtujuan()
+    {
         return view('insert.inserttujuan');
     }
-    // public function inserttujuan(request $request){
-    //     Tujuan::create($request->all());
-    //     return redirect()->route('tujuan')->with('success','Data Berhasil Ditambahkan!');
-    // }
 
-    public function inserttujuan(Request $request){
-        // Validate the incoming request data
+    public function inserttujuan(Request $request)
+    {
+        // Validasi input
         $validator = Validator::make($request->all(), [
-            'nama' => 'required|string',
-            'provinsi' => 'required|string',
-            'kota' => 'required|string',
-            'lokasi_tujuan' => 'required|string',
-            'urlImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Assuming you're uploading images
+            'id_otlate' => 'required|exists:otlate,id_otlate',
+            'nama' => 'required',
+            'lokasi_tujuan' => 'required',
+            'urlImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'deskripsi' => 'required',
+            'tanggal' => 'required|date',
+            'jam' => 'required',
+            'harga_sewa' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 400);
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Handle image upload
-        $imageName = time().'.'.$request->urlImage->extension();
+        // Handle upload gambar
+        $imageName = time() . '.' . $request->urlImage->extension();
         $request->urlImage->move(public_path('images'), $imageName);
 
-        // Create a new Tujuan instance
+        // Buat instance baru dari model Tujuan
         $tujuan = new Tujuan([
+            'id_otlate' => $request->id_otlate,
             'nama' => $request->nama,
-            'provinsi' => $request->provinsi,
-            'kota' => $request->kota,
             'lokasi_tujuan' => $request->lokasi_tujuan,
             'urlImage' => $imageName,
+            'deskripsi' => $request->deskripsi,
+            'tanggal' => $request->tanggal,
+            'jam' => $request->jam,
+            'harga_sewa' => $request->harga_sewa,
         ]);
 
-        // Save the new Tujuan instance to the database
+        // Simpan instance Tujuan ke database
         $tujuan->save();
-        // Redirect back to the page of tujuan
+
+        // Redirect kembali ke halaman tujuan dengan pesan sukses
         return redirect()->route('tujuan')->with('success', 'Data tujuan berhasil ditambahkan');
     }
-    public function tujuanDelete( $id ){
+
+    public function tujuanDelete($id)
+    {
         $tujuan = Tujuan::find($id);
+        if (!$tujuan) {
+            return redirect()->route('tujuan')->with('error', 'Data Tujuan tidak ditemukan');
+        }
+
+        // Hapus gambar terkait dari direktori penyimpanan
+        if ($tujuan->urlImage) {
+            Storage::delete('images/' . $tujuan->urlImage);
+        }
+
+        // Hapus data Tujuan dari database
         $tujuan->delete();
-        return redirect()->route('tujuan')->with('success','Data Berhasil Dihapus!');
+
+        return redirect()->route('tujuan')->with('success', 'Data Berhasil Dihapus!');
     }
-    public function edittujuan($id_tujuan) {
+
+    public function edittujuan($id_tujuan)
+    {
         $tujuan = Tujuan::find($id_tujuan);
         if (!$tujuan) {
             return redirect()->route('tujuan')->with('error', 'Data Tujuan tidak ditemukan');
         }
+
         return view('edit.edittujuan', compact('tujuan'));
     }
-    public function updatetujuan(Request $request, $id_tujuan) {
+
+    public function updatetujuan(Request $request, $id_tujuan)
+    {
         // Temukan tujuan berdasarkan ID
         $tujuan = Tujuan::find($id_tujuan);
 
@@ -263,9 +295,11 @@ public function updatepelanggan(request $request, $id_pelanggan ){
         // Validasi input yang diterima
         $validator = Validator::make($request->all(), [
             'nama' => 'required|string',
-            'provinsi' => 'required|string',
-            'kota' => 'required|string',
             'lokasi_tujuan' => 'required|string',
+            'deskripsi' => 'required|string',
+            'tanggal' => 'required|date',
+            'jam' => 'required',
+            'harga_sewa' => 'required|numeric',
             'urlImage' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Diubah menjadi opsional
         ], [
             'urlImage.image' => 'Gambar harus dalam format JPEG, PNG, JPG, atau GIF',
@@ -279,9 +313,11 @@ public function updatepelanggan(request $request, $id_pelanggan ){
 
         // Update atribut-atribut yang diizinkan
         $tujuan->nama = $request->nama;
-        $tujuan->provinsi = $request->provinsi;
-        $tujuan->kota = $request->kota;
         $tujuan->lokasi_tujuan = $request->lokasi_tujuan;
+        $tujuan->deskripsi = $request->deskripsi;
+        $tujuan->tanggal = $request->tanggal;
+        $tujuan->jam = $request->jam;
+        $tujuan->harga_sewa = $request->harga_sewa;
 
         // Handle gambar jika diunggah
         if ($request->hasFile('urlImage')) {
@@ -303,60 +339,87 @@ public function updatepelanggan(request $request, $id_pelanggan ){
         return redirect()->route('tujuan')->with('success', 'Data tujuan berhasil diperbarui.');
     }
 
-//CRUD KENDARAAN
-public function tambahkendaraan(){
-    return view('insert.insertkendaraan');
-}
 
-public function insertkendaraan(request $request){
-    Kendaraan::create($request->all());
-    return redirect()->route('kendaraan')->with('success','Data Berhasil Ditambahkan!');
-}
-public function kendaraanDelete( $id ){
-    $kendaraan = Kendaraan::find($id);
-    $kendaraan->delete();
-    return redirect()->route('kendaraan')->with('success','Data Berhasil Dihapus!');
-}
-public function editkendaraan( $id ){
-    $kendaraan = Kendaraan::find($id);
-    return view('edit.editkendaraan',compact('kendaraan'));
-}
+    //CRUD KENDARAAN
+    public function tambahkendaraan(){
+        return view('insert.insertkendaraan');
+    }
 
-public function updatekendaraan(request $request, $id_kendaraan ){
-    $kendaraan = Kendaraan::find($id_kendaraan);
-    $kendaraan->update($request->all());
-    return redirect()->route('kendaraan')->with('success','Data Berhasil Diubah!');
-}
+    public function insertkendaraan(request $request){
+        Kendaraan::create($request->all());
+        return redirect()->route('kendaraan')->with('success','Data Berhasil Ditambahkan!');
+    }
+    public function kendaraanDelete( $id ){
+        $kendaraan = Kendaraan::find($id);
+        $kendaraan->delete();
+        return redirect()->route('kendaraan')->with('success','Data Berhasil Dihapus!');
+    }
+    public function editkendaraan( $id ){
+        $kendaraan = Kendaraan::find($id);
+        return view('edit.editkendaraan',compact('kendaraan'));
+    }
 
+    public function updatekendaraan(request $request, $id_kendaraan ){
+        $kendaraan = Kendaraan::find($id_kendaraan);
+        $kendaraan->update($request->all());
+        return redirect()->route('kendaraan')->with('success','Data Berhasil Diubah!');
+    }
 
+    //CRUD OTLATE
+    public function tambahotlate(){
+        return view('insert.insertotlate');
+    }
 
-//CRUD INVOICE
+    public function insertotlate(request $request){
+        Otlate::create($request->all());
+        return redirect()->route('otlate')->with('success','Data Berhasil Ditambahkan!');
+    }
+    public function otlateDelete( $id ){
+        $otlate = Otlate::find($id);
+        $otlate->delete();
+        return redirect()->route('otlate')->with('success','Data Berhasil Dihapus!');
+    }
+    public function editotlate( $id ){
+        $otlate = Otlate::find($id);
+        return view('edit.editotlate',compact('otlate'));
+    }
 
-public function tambahinvoice(){
-    return view('insert.insertinvoice');
-}
-
-public function insertinvoice(request $request){
-    Sewa::create($request->all());
-    return redirect()->route('invoice')->with('success','Data Berhasil Ditambahkan!');
-}
-public function invoiceDelete( $id ){
-    $sewa = Sewa::find($id);
-    $sewa->delete();
-    return redirect()->route('invoice')->with('success','Data Berhasil Dihapus!');
-}
-public function editinvoice( $id_sewa ){
-    $sewa = Sewa::find($id_sewa);
-    return view('edit.editinvoice',compact('sewa'));
-}
-
-public function updateinvoice(request $request, $id_sewa ){
-    $sewa = Sewa::find($id_sewa);
-    $sewa->update($request->all());
-    return redirect()->route('invoice')->with('success','Data Berhasil Diubah!');
-}
+    public function updateotlate(request $request, $id_otlate ){
+        $otlate = Otlate::find($id_otlate);
+        $otlate->update($request->all());
+        return redirect()->route('otlate')->with('success','Data Berhasil Diubah!');
+    }
 
 
 
-}
+
+    //CRUD INVOICE
+
+    public function tambahinvoice(){
+        return view('insert.insertinvoice');
+    }
+
+    public function insertinvoice(request $request){
+        Sewa::create($request->all());
+        return redirect()->route('invoice')->with('success','Data Berhasil Ditambahkan!');
+    }
+    public function invoiceDelete( $id ){
+        $sewa = Sewa::find($id);
+        $sewa->delete();
+        return redirect()->route('invoice')->with('success','Data Berhasil Dihapus!');
+    }
+    public function editinvoice( $id_sewa ){
+        $sewa = Sewa::find($id_sewa);
+        return view('edit.editinvoice',compact('sewa'));
+    }
+
+    public function updateinvoice(request $request, $id_sewa ){
+        $sewa = Sewa::find($id_sewa);
+        $sewa->update($request->all());
+        return redirect()->route('invoice')->with('success','Data Berhasil Diubah!');
+    }
+
+
+
+    }
 

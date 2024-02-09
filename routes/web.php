@@ -47,6 +47,7 @@ Route::get('/user', [AdminController::class,'users'])->name('user');
 Route::get('/tujuan', [AdminController::class,'tujuan'])->name('tujuan');
 Route::get('/kendaraan', [AdminController::class,'kendaraan'])->name('kendaraan');
 Route::get('/pelanggan', [AdminController::class,'pelanggan'])->name('pelanggan');
+Route::get('/otlate', [AdminController::class,'otlate'])->name('otlate');
 
 
 //CRUD crudpenyewa
@@ -85,6 +86,14 @@ Route::post('/insertkendaraan', [AdminController::class,'insertkendaraan'])->nam
 Route::get('/kendaraanDelete/{id_kendaraan}', [AdminController::class,'kendaraanDelete'])->name('kendaraanDelete');
 Route::get('/editKendaraan/{id_kendaraan}', [AdminController::class,'editkendaraan'])->name('editKendaraan');
 Route::post('/updatekendaraan/{id_kendaraan}', [AdminController::class,'updatekendaraan'])->name('updatekendaraan');
+
+//CRUD otlate
+Route::get('/insertOtlate', [AdminController::class,'tambahotlate'])->name('insertOtlate');
+Route::post('/insertotlate', [AdminController::class,'insertotlate'])->name('insertotlate');
+Route::get('/otlateDelete/{id_otlate}', [AdminController::class,'otlateDelete'])->name('otlateDelete');
+Route::get('/editOtlate/{id_otlate}', [AdminController::class,'editotlate'])->name('editOtlate');
+Route::post('/updateotlate/{id_otlate}', [AdminController::class,'updateotlate'])->name('updateotlate');
+
 
 //CRUD crudinvoice
 Route::get('/insertInvoice', [AdminController::class,'tambahinvoice'])->name('insertInvoice');

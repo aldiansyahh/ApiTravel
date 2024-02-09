@@ -1,48 +1,41 @@
 @extends('admin.masteradmin')
 
 @section('content')
-<div class="form-group mb-3">
-    <h1 class="h3 text-black-1000">Tambah Tujuan</h1>
-</div>
-
-<div class="card-body">
-    @if(session('error'))
-    <div class="alert alert-danger">
-        <b>Opps!</b> {{session('error')}}
-    </div>
-    @endif
-
-    <form action="/inserttujuan" method="POST" enctype="multipart/form-data">
+    <h1 class="h3 mb-5 text-gray-800">Tambah Data Tujuan</h1>
+    <form action="{{ route('inserttujuan') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
         <div class="mb-3">
-            <label for="nama" class="form-label">Nama Tujuan</label>
+            <label for="id_otlate" class="form-label">ID Otlate</label>
+            <input type="text" name="id_otlate" class="form-control" id="id_otlate" required>
+        </div>
+        <div class="mb-3">
+            <label for="nama" class="form-label">Nama Tempat</label>
             <input type="text" name="nama" class="form-control" id="nama" required>
         </div>
-
-        <div class="mb-3">
-            <label for="provinsi" class="form-label">Provinsi</label>
-            <input type="text" name="provinsi" class="form-control" id="provinsi" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="kota" class="form-label">Kota</label>
-            <input type="text" name="kota" class="form-control" id="kota" required>
-        </div>
-
         <div class="mb-3">
             <label for="lokasi_tujuan" class="form-label">Lokasi Tujuan</label>
             <input type="text" name="lokasi_tujuan" class="form-control" id="lokasi_tujuan" required>
         </div>
-
         <div class="mb-3">
-            <label for="gambar" class="form-label">Gambar</label>
-            <input type="file" name="urlImage" class="form-control" id="gambar" accept="image/*" required>
+            <label for="foto" class="form-label">Foto</label>
+            <input type="file" name="urlImage" class="form-control" id="foto" accept="image/*" required>
         </div>
-
-
+        <div class="mb-3">
+            <label for="deskripsi" class="form-label">Deskripsi</label>
+            <textarea name="deskripsi" class="form-control" id="deskripsi" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="tanggal" class="form-label">Tanggal</label>
+            <input type="date" name="tanggal" class="form-control" id="tanggal" required>
+        </div>
+        <div class="mb-3">
+            <label for="jam" class="form-label">Jam</label>
+            <input type="time" name="jam" class="form-control" id="jam" required>
+        </div>
+        <div class="mb-3">
+            <label for="harga_sewa" class="form-label">Harga Sewa</label>
+            <input type="number" name="harga_sewa" class="form-control" id="harga_sewa" required>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="#" class="btn btn-primary">Cancel</a>
     </form>
-</div>
 @endsection

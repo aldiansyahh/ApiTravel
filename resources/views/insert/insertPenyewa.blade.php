@@ -1,84 +1,50 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('admin.masteradmin')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@section('content')
+    <h1 class="h3 mb-5 text-gray-800">Tambah Penyewa</h1>
 
-    <title>Data Penyewa</title>
-  </head>
-  <body>
-    @extends('admin.masteradmin') <!-- Jika Anda menggunakan layout -->
-
-    @section('content')
-    <div class="form-group mb-3">
-        <h1 class="h3 text-black-1000">Tambah Penyewa</h1>
-    </div>
-                    <div class="card-body">
-                        @if(session('error'))
-                        <div class="alert alert-danger">
-                            <b>Opps!</b> {{session('error')}}
-                        </div>
-                        @endif
-        <form action="/insertpenyewa" method="POST" enctype="multipart/form-data">
-          @csrf
-{{-- <div class="mb-3">
-  <label for="exampleInputEmail1" class="form-label">ID</label>
-  <input type="number" name="id_penyewa" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-</div> --}}
-
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">NIK</label>
-            <input type="text" name="nik" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nama</label>
-            <input type="text" name="nama" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">No Hp</label>
-            <input type="text" name="no_hp" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Alamat</label>
-            <input type="text" name="alamat" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Jenis Kelamin</label>
-            <select name="jenis_kelamin" class="form-select" aria-label="Default select example">
-                <option value="Laki-Laki">L</option>
-                <option value="Perempuan">P</option>
-            </select>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <form action="/insertpenyewa" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="id_user" class="form-label">ID User</label>
+                    <input type="text" class="form-control" id="id_user" name="id_user" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id_otlate" class="form-label">ID Otlate</label>
+                    <input type="text" class="form-control" id="id_otlate" name="id_otlate" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nik" class="form-label">NIK</label>
+                    <input type="text" class="form-control" id="nik" name="nik" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" class="form-control" id="nama" name="nama" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="no_hp" class="form-label">No. HP</label>
+                    <input type="text" class="form-control" id="no_hp" name="no_hp" required>
+                </div>
+                <div class="mb-3">
+                    <label for="alamat" class="form-label">Alamat</label>
+                    <input type="text" class="form-control" id="alamat" name="alamat" required>
+                </div>
+                <div class="mb-3">
+                    <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                    <select class="form-select" id="jenis_kelamin" name="jenis_kelamin" required>
+                        <option value="L">Laki-laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="/crudpenyewa" class="btn btn-secondary">Cancel</a>
+            </form>
         </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <a href="crudpenyewa" type="submit" class="btn btn-primary">Cancel</a>
-        </form>
-      </div>    @endsection
     </div>
-      </div>
-    </div>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+@endsection

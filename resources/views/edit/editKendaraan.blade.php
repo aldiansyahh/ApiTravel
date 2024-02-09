@@ -48,10 +48,6 @@
             <input type="text" name="nomor_plat" class="form-control" id="nomor_plat" aria-describedby="nomor_platHelp" required value="{{$kendaraan->nomor_plat}}">
         </div>
 
-        <div class="mb-3">
-            <label for="harga_sewa" class="form-label">Harga Sewa</label>
-            <input type="number" name="harga_sewa" class="form-control" id="harga_sewa" aria-describedby="harga_sewaHelp" required value="{{$kendaraan->harga_sewa}}">
-        </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
         <a href="/invoice" class="btn btn-primary">Cancel</a>

@@ -68,6 +68,13 @@
                     <span>Pelanggan</span>
                 </a>
 
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/otlate" data-toggle="collapse" data-target="#collapseUtilities"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>Otlet</span>
+                    </a>
+
             <!-- Nav Item - Pages Collapse Menu -->
 
             <li class="nav-item">
@@ -321,6 +328,15 @@
                         if (result) {
                             // Jika pengguna mengonfirmasi, arahkan ke URL penghapusan
                             window.location.href = "/penyewaDelete/" + id;
+                        }
+                    }
+                </script>
+                <script>
+                    function confirmDeleteOtlate(id) {
+                        var result = confirm("Apakah Anda yakin ingin menghapus?");
+                        if (result) {
+                            // Jika pengguna mengonfirmasi, arahkan ke URL penghapusan
+                            window.location.href = "/otlateDelete/" + id;
                         }
                     }
                 </script>

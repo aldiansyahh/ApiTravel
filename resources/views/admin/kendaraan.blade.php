@@ -28,7 +28,6 @@
                             <th>Tahun Produksi</th>
                             <th>Warna</th>
                             <th>Nomor Plat</th>
-                            <th>Harga Sewa</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -43,7 +42,6 @@
                                 <td>{{ $kendaraan->tahun_produksi }}</td>
                                 <td>{{ $kendaraan->warna }}</td>
                                 <td>{{ $kendaraan->nomor_plat }}</td>
-                                <td>{{ $kendaraan->harga_sewa }}</td>
                                 <td>
                                     <a href="/editKendaraan/{{ $kendaraan->id_kendaraan }}" class="btn btn-warning">Ubah</a>
                                     <a href="#" class="btn btn-danger" onclick="confirmDeleteKendaraan({{ $kendaraan->id_kendaraan }})">Hapus</a>

@@ -52,10 +52,6 @@
                         <label for="nomor_plat">Nomor Plat Kendaraan</label>
                         <input type="text" class="form-control" id="nomor_plat" name="nomor_plat" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="harga_sewa">Harga Sewa</label>
-                        <input type="number" class="form-control" id="harga_sewa" name="harga_sewa" required>
-                    </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <a href="/invoice" class="btn btn-secondary">Cancel</a>
