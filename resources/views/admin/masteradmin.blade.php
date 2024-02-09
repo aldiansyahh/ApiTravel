@@ -48,21 +48,21 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="crudpenyewa" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="/crudpenyewa" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Penyewa</span>
                 </a>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="kendaraan" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="/kendaraan" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Kendaraan</span>
                 </a>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pelanggan" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="/pelanggan" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Pelanggan</span>
@@ -71,21 +71,21 @@
             <!-- Nav Item - Pages Collapse Menu -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="tujuan" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="/tujuan" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Tujuan</span>
                 </a>
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="user" data-toggle="collapse" data-target="#collapseUtilities"
+                    <a class="nav-link collapsed" href="/user" data-toggle="collapse" data-target="#collapseUtilities"
                         aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fas fa-fw fa-wrench"></i>
                         <span>User</span>
                     </a>
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="invoice" data-toggle="collapse" data-target="#collapseTwo"
+                    <a class="nav-link collapsed" href="/invoice" data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
                         <span>Invoice</span>

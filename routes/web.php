@@ -30,6 +30,7 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
 Route::post('actionloginAdmin', [LoginController::class, 'actionloginAdmin'])->name('actionloginAdmin');
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
+Route::group(['middleware'=> 'auth'], function(){
 
 // Route::get('mahasiswa', [HomeController::class, 'index'])->name('mahasiswa');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
@@ -57,7 +58,7 @@ Route::post('/updatepenyewa/{id_penyewa}', [AdminController::class,'updatepenyew
 
 
 //CRUD user
-Route::get('/insertUser', [AdminController::class,'tambahuser'])->name('insertUser');
+Route::get('/tambahUser', [AdminController::class,'tambahuser'])->name('insertUser');
 Route::post('/insertuser', [AdminController::class,'insertuser'])->name('insertuser');
 Route::get('/userDelete/{id_user}', [AdminController::class,'userDelete'])->name('userDelete');
 Route::get('/editUser/{id_user}', [AdminController::class,'edituser'])->name('editUser');
@@ -95,5 +96,5 @@ Route::post('/updateinvoice/{id_sewa}', [AdminController::class,'updateinvoice']
 
 
 
-Route::group(['middleware'=> 'auth'], function(){
+
 });

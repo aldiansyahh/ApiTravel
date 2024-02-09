@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('penyewa', function (Blueprint $table) {
             $table->id('id_penyewa')->autoIncrement();
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->unsignedBigInteger('id_otlate');
+            $table->foreign('id_otlate')->references('id_otlate')->on('otlate')->onDelete('cascade');
             $table->bigInteger('nik');
             $table->string('nama');
             $table->string('email')->unique();

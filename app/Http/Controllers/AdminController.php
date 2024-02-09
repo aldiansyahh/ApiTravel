@@ -150,7 +150,7 @@ public function updatepelanggan(request $request, $id_pelanggan ){
 
     //CRUD USER
     public function tambahuser(){
-        return view('admin.insertuser');
+        return view('insert.insertuser');
     }
 
     public function insertuser(request $request){
@@ -347,7 +347,7 @@ public function invoiceDelete( $id ){
 }
 public function editinvoice( $id_sewa ){
     $sewa = Sewa::find($id_sewa);
-    return view('edit.editinvoice',compact('invoice'));
+    return view('edit.editinvoice',compact('sewa'));
 }
 
 public function updateinvoice(request $request, $id_sewa ){

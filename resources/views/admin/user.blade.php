@@ -9,7 +9,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="/insertUser">
+            <a href="/tambahUser">
                 <p class="btn btn-success ">Tambah +</p><br>
             </a>
             @if ($message = Session::get('success'))

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('tujuan', function (Blueprint $table) {
             $table->id('id_tujuan')->autoIncrement();
+            $table->unsignedBigInteger('id_otlate');
+            $table->foreign('id_otlate')->references('id_otlate')->on('otlate')->onDelete('cascade');
             $table->string('nama');
             $table->string('provinsi');
             $table->string('kota');

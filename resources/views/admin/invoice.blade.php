@@ -29,7 +29,16 @@
                             <th>ID Kendaraan</th>
                             <th>ID Pelanggan</th>
                             <th>ID Tujuan</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>No Hp</th>
+                            <th>Nama kendaraan</th>
+                            <th>No Plat</th>
                             <th>Tanggal</th>
+                            <th>Lokasi Awal</th> <!-- Perbaikan pada nama kolom -->
+                            <th>Lokasi Tujuan</th> <!-- Perbaikan pada nama kolom -->
+                            <th>Harga Sewa</th> <!-- Perbaikan pada nama kolom -->
+                            <th>Waktu Pembuatan</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,10 +50,18 @@
                                 <td>{{ $sewa->id_kendaraan }}</td>
                                 <td>{{ $sewa->id_pelanggan }}</td>
                                 <td>{{ $sewa->id_tujuan }}</td>
+                                <td>{{ $sewa->nama }}</td>
+                                <td>{{ $sewa->email }}</td>
+                                <td>{{ $sewa->no_hp }}</td>
+                                <td>{{ $sewa->nama_kendaraan }}</td>
+                                <td>{{ $sewa->nomor_plat }}</td>
                                 <td>{{ $sewa->tanggal }}</td>
+                                <td>{{ $sewa->lokasi_awal }}</td>
+                                <td>{{ $sewa->lokasi_tujuan }}</td>
+                                <td>{{ $sewa->harga_sewa }}</td>
                                 <td>{{ $sewa->created_at }}</td>
                                 <td>
-                                    <a href="/editinvoice/{{ $sewa->id_sewa }}" class="btn btn-warning">Ubah</a>
+                                    <a href="/editInvoice/{{ $sewa->id_sewa }}" class="btn btn-warning">Ubah</a>
                                     <a href="#" class="btn btn-danger" onclick="confirmDeleteInvoice({{ $sewa->id_sewa }})">Hapus</a>
                                 </td>
                             </tr>

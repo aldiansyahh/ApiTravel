@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="form-group mb-3">
-        <h1 class="h3 text-black-1000">Edit Data Sewa</h1>
+        <h1 class="h3 text-black-1000">Edit Data Invoice</h1>
     </div>
 
     @if(session('error'))
@@ -15,23 +15,23 @@
         @csrf
 
         <div class="mb-3">
-            <label for="penyewa_id" class="form-label">ID Penyewa</label>
-            <input type="text" name="penyewa_id" class="form-control" id="penyewa_id" aria-describedby="penyewaHelp" required value="{{$sewa->penyewa_id}}">
+            <label for="id_penyewa" class="form-label">ID Penyewa</label>
+            <input type="text" name="id_penyewa" class="form-control" id="penyewa_id" aria-describedby="penyewaHelp" required value="{{$sewa->id_penyewa}}">
         </div>
 
         <div class="mb-3">
-            <label for="kendaraan_id" class="form-label">ID Kendaraan</label>
-            <input type="text" name="kendaraan_id" class="form-control" id="kendaraan_id" aria-describedby="kendaraanHelp" required value="{{$sewa->kendaraan_id}}">
+            <label for="id_kendaraan" class="form-label">ID Kendaraan</label>
+            <input type="text" name="id_kendaraan" class="form-control" id="id_kendaraan" aria-describedby="kendaraanHelp" required value="{{$sewa->id_kendaraan}}">
         </div>
 
         <div class="mb-3">
-            <label for="pelanggan_id" class="form-label">ID Pelanggan</label>
-            <input type="text" name="pelanggan_id" class="form-control" id="pelanggan_id" aria-describedby="pelangganHelp" required value="{{$sewa->pelanggan_id}}">
+            <label for="id_pelanggan" class="form-label">ID Pelanggan</label>
+            <input type="text" name="id_pelanggan" class="form-control" id="id_pelanggan" aria-describedby="pelangganHelp" required value="{{$sewa->id_pelanggan}}">
         </div>
 
         <div class="mb-3">
-            <label for="tujuan_id" class="form-label">ID Tujuan</label>
-            <input type="text" name="tujuan_id" class="form-control" id="tujuan_id" aria-describedby="tujuanHelp" required value="{{$sewa->tujuan_id}}">
+            <label for="id_tujuan" class="form-label">ID Tujuan</label>
+            <input type="text" name="id_tujuan" class="form-control" id="id_tujuan" aria-describedby="tujuanHelp" required value="{{$sewa->id_tujuan}}">
         </div>
 
         <div class="mb-3">

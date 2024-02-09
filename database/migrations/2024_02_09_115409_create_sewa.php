@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('lokasi_awal');
             $table->string('lokasi_tujuan');
             $table->decimal('harga_sewa', 10, 2);
+            $table->string('status');
 
             $table->timestamps();
         });

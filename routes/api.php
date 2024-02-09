@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\ApiKendaraanController;
+use App\Http\Controllers\ApiOtlateController;
 use App\Http\Controllers\ApiPelangganController;
 use App\Http\Controllers\ApiPenyewaController;
 use App\Http\Controllers\ApiSewaController;
 use App\Http\Controllers\ApiTujuanController;
+use App\Http\Controllers\ApiUserController;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenyewaController;
@@ -71,3 +73,19 @@ Route::post('/create-sewa', [ApiSewaController::class, 'create']);
 Route::put('/update-sewa/{id_sewa}', [ApiSewaController::class, 'update']);
 //Put harus di x-www-form
 Route::delete('/delete-sewa/{id_sewa}', [ApiSewaController::class, 'delete']);
+
+//Api Otlate
+// Route::get('/otlate', [OtlateController::class,'otlate'])->name('otlate');
+Route::get('/otlate', [ApiOtlateController::class,'otlate'])->name('otlate');
+Route::get('/otlate/{id_otlate}', [ApiOtlateController::class,'show']);
+Route::post('/create-otlate', [ApiOtlateController::class, 'create']);
+Route::put('/update-otlate/{id_otlate}', [ApiOtlateController::class, 'update']);
+//Put harus di x-www-form
+Route::delete('/delete-otlate/{id_otlate}', [ApiOtlateController::class, 'delete']);
+
+
+
+Route::post('/register/Penyewa', [ApiUserController::class, 'registerPenyewa']);
+Route::post('/register/Pelanggan', [ApiUserController::class, 'registerPelanggan']);
+Route::post('/login', [ApiUserController::class, 'login']);
+
