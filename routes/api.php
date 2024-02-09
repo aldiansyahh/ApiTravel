@@ -40,7 +40,7 @@ Route::delete('/delete-penyewa/{id_penyewa}', [ApiPenyewaController::class, 'del
 //Api Pelanggan
 Route::get('/pelanggan', [PelangganController::class,'pelanggan'])->name('pelanggan');
 Route::get('/pelanggan', [ApiPelangganController::class,'pelanggan'])->name('pelanggan');
-Route::get('/pelanggan/{id_pelanggan}', [ApiPelangganController::class,'show']);
+Route::get('/pelanggan/{id_user}', [ApiPelangganController::class,'show']);
 Route::post('/create-pelanggan', [ApiPelangganController::class, 'create']);
 Route::put('/update-pelanggan/{id_pelanggan}', [ApiPelangganController::class, 'update']);
 //Put harus di x-www-form
