@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('tahun_produksi');
             $table->string('warna');
             $table->string('nomor_plat');
-            $table->decimal('harga_sewa', 10, 2);
             $table->timestamps();
         });
     }

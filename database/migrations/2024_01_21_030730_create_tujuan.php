@@ -20,6 +20,11 @@ return new class extends Migration
             $table->string('nama');
             $table->string('lokasi_tujuan');
             $table->string('urlImage');
+            $table->string('deskripsi');
+            $table->date('tanggal'); // Tambahkan kolom tanggal_booking
+            $table->time('jam');     // Tambahkan kolom jam_booking
+            $table->decimal('harga_sewa', 10, 2);
+
             $table->timestamps();
         });
     }
