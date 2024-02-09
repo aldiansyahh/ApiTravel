@@ -84,7 +84,7 @@ Route::put('/update-otlate/{id_otlate}', [ApiOtlateController::class, 'update'])
 Route::delete('/delete-otlate/{id_otlate}', [ApiOtlateController::class, 'delete']);
 
 
-
+Route::get('/user', [ApiUserController::class,'show']);
 Route::post('/register/Penyewa', [ApiUserController::class, 'registerPenyewa']);
 Route::post('/register/Pelanggan', [ApiUserController::class, 'registerPelanggan']);
 Route::post('/login', [ApiUserController::class, 'login']);

@@ -80,6 +80,21 @@ class ApiUserController extends Controller
             ], 500);
         }
     }
+
+    public function show(){
+        $user= User::all();
+
+        if(!$user){
+            return response()->json('Data Tidak Ditemukan');
+        };
+
+        $data=[
+            'message'=>'Data Berhasil Diambil',
+            'data'=> $user
+
+        ];
+        return response()->json($data,200);
+    }
     public function login(Request $request)
     {
         try {

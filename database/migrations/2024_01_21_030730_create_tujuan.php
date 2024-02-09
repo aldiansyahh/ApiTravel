@@ -18,8 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_otlate');
             $table->foreign('id_otlate')->references('id_otlate')->on('otlate')->onDelete('cascade');
             $table->string('nama');
-            $table->string('provinsi');
-            $table->string('kota');
             $table->string('lokasi_tujuan');
             $table->string('urlImage');
             $table->timestamps();
