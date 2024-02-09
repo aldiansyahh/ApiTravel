@@ -35,13 +35,7 @@ class ApiTujuanController extends Controller
     }
 
 //Menambahkan Data Di API
-    public function create(Request $request)
-    {
-
-        $data= Tujuan::create($request->all());
-
-        return response()->json(['message' => 'Product created successfully', 'data' => $data], 201);
-    }
+  
 
     public function update(Request $request, $id_tujuan){
 
@@ -80,39 +74,39 @@ class ApiTujuanController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function create(Request $request)
     {
         // Validate the incoming request data
         $validator = Validator::make($request->all(), [
+            'id_otlate' => 'required|exists:otlate,id_otlate',
             'nama' => 'required|string',
-            'provinsi' => 'required|string',
-            'kota' => 'required|string',
             'lokasi_tujuan' => 'required|string',
             'urlImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Assuming you're uploading images
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 400);
         }
-
+    
         // Handle image upload
-        $imageName = time().'.'.$request->urlImage->extension();
-        $request->urlImage->move(public_path('images'), $imageName);
-
+        $imageName = time().'.'.$request->file('urlImage')->getClientOriginalExtension();
+        $request->file('urlImage')->move(public_path('images'), $imageName);
+    
         // Create a new Tujuan instance
         $tujuan = new Tujuan([
+            'id_otlate' => $request->id_otlate,
             'nama' => $request->nama,
-            'provinsi' => $request->provinsi,
-            'kota' => $request->kota,
             'lokasi_tujuan' => $request->lokasi_tujuan,
             'urlImage' => $imageName,
         ]);
-
+    
         // Save the Tujuan instance to the database
         $tujuan->save();
-
+    
         return response()->json(['message' => 'Tujuan created successfully', 'tujuan' => $tujuan], 201);
     }
+    
+
 
 
 

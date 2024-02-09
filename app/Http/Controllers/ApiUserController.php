@@ -82,19 +82,19 @@ class ApiUserController extends Controller
     }
 
     public function show(){
-        $user= User::all();
-
-        if(!$user){
-            return response()->json('Data Tidak Ditemukan');
-        };
-
-        $data=[
-            'message'=>'Data Berhasil Diambil',
-            'data'=> $user
-
-        ];
-        return response()->json($data,200);
+        $users = User::all();
+    
+        if($users->isEmpty()){
+            return response()->json('Data Tidak Ditemukan', 404);
+        }
+    
+        return response()->json([
+            'message' => 'Data Berhasil Diambil',
+            'data' => $users
+        ], 200);
     }
+    
+    
     public function login(Request $request)
     {
         try {
